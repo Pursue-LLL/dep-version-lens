@@ -1,8 +1,8 @@
 {
   "name": "dep-version-lens",
-  "displayName": "Dep Version Lens",
+  "displayName": "Dependency Version Lens",
   "description": "Display latest versions for Python and npm dependencies with one-click updates",
-  "version": "0.9.0",
+  "version": "1.0.0",
   "publisher": "PursueLLL",
   "icon": "resources/icon.png",
   "repository": {
