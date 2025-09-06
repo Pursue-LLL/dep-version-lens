@@ -1,0 +1,20 @@
+[project]
+name = "test-project"
+dependencies = [
+    "requests>=2.28.0",
+    "numpy~=1.21.0",
+    "django==4.1.0"
+]
+override-dependencies = [
+    "pillow>=11.3.0"
+]
+dev-dependencies = [
+    "pytest>=8.3.5",
+    "ruff>=0.1.0",
+    "pre-commit>=3.3.3"
+]
+
+[tool.poetry.dependencies]
+python = ">=3.13, <4"
+fastapi = ">=0.116.1"
+granian = ">=2.5.2"

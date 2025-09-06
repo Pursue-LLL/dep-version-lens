@@ -1,0 +1,28 @@
+out
+dist
+node_modules
+.vscode-test/
+*.vsix
+.DS_Store
+
+# Development tools and configurations
+.kiro/
+.kiro copy/
+.vscode/
+
+# Development documentation
+PROJECT_STATUS.md
+PROJECT_SUMMARY.md
+PUBLISH_GUIDE.md
+RELEASE_GUIDE.md
+UPGRADE_MODES.md
+USAGE.md
+
+# Test and demo files
+test-*.js
+test-*.txt
+test-demo.txt
+demo-requirements.txt
+
+# Scripts (if temporary)
+scripts/

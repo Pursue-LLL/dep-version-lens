@@ -1,0 +1,170 @@
+{
+  "name": "version-lens",
+  "displayName": "Dep Version Lens",
+  "description": "Display latest versions for Python and npm dependencies with one-click updates",
+  "version": "0.9.0",
+  "publisher": "PursueLLL",
+  "icon": "resources/icon.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/PursueLLL/version-lens.git"
+  },
+  "homepage": "https://github.com/PursueLLL/version-lens",
+  "bugs": {
+    "url": "https://github.com/PursueLLL/version-lens/issues"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "python",
+    "npm",
+    "dependencies",
+    "versions",
+    "pip",
+    "poetry",
+    "pipenv",
+    "requirements",
+    "package.json",
+    "node"
+  ],
+  "activationEvents": [
+    "onLanguage:pip-requirements",
+    "onLanguage:toml",
+    "onLanguage:python",
+    "onLanguage:json"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "version-lens.showVersionLenses",
+        "title": "Show Version Lenses",
+        "category": "Dep Version Lens"
+      },
+      {
+        "command": "version-lens.hideVersionLenses",
+        "title": "Hide Version Lenses",
+        "category": "Dep Version Lens"
+      },
+      {
+        "command": "version-lens.refreshVersions",
+        "title": "Refresh Version Information",
+        "category": "Dep Version Lens"
+      },
+      {
+        "command": "version-lens.updatePackage",
+        "title": "Update Package Version",
+        "category": "Dep Version Lens"
+      },
+      {
+        "command": "version-lens.toggleVersionLenses",
+        "title": "Toggle Version Lenses",
+        "category": "Dep Version Lens",
+        "icon": "$(eye)"
+      },
+      {
+        "command": "version-lens.toggleVersionLensesOff",
+        "title": "Toggle Version Lenses (Off)",
+        "category": "Dep Version Lens",
+        "icon": "$(eye-closed)"
+      }
+    ],
+    "configuration": {
+      "title": "Dep Version Lens",
+      "properties": {
+        "versionLens.enabled": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable/disable the Dep Version Lens extension"
+        },
+        "versionLens.cacheTimeout": {
+          "type": "number",
+          "default": 3600000,
+          "description": "Cache timeout in milliseconds (default: 1 hour)"
+        },
+        "versionLens.supportedFiles": {
+          "type": "array",
+          "default": [
+            "requirements.txt",
+            "requirements-*.txt",
+            "pyproject.toml",
+            "setup.py",
+            "Pipfile",
+            "package.json"
+          ],
+          "description": "File patterns to watch for Python and npm dependencies"
+        },
+        "versionLens.customPyPIIndex": {
+          "type": "string",
+          "default": "",
+          "description": "Custom PyPI index URL (leave empty for default PyPI)"
+        },
+        "versionLens.excludePatterns": {
+          "type": "array",
+          "default": [],
+          "description": "Package names to exclude (supports glob patterns)"
+        },
+        "versionLens.decorationStyle": {
+          "type": "object",
+          "default": {
+            "color": "#999999",
+            "fontStyle": "italic"
+          },
+          "description": "Styling options for version lens decorations"
+        }
+      }
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "version-lens.refreshVersions",
+          "when": "resourceExtname == .txt || resourceExtname == .toml || resourceExtname == .py || resourceExtname == .json",
+          "group": "version-lens"
+        }
+      ],
+      "editor/title": [
+        {
+          "command": "version-lens.toggleVersionLenses",
+          "when": "version-lens.lensesEnabled && ((resourceExtname == .txt && resourceFilename =~ /requirements/) || resourceExtname == .toml || resourceExtname == .py || resourceFilename == Pipfile || resourceFilename == package.json)",
+          "group": "navigation@1"
+        },
+        {
+          "command": "version-lens.toggleVersionLensesOff",
+          "when": "!version-lens.lensesEnabled && ((resourceExtname == .txt && resourceFilename =~ /requirements/) || resourceExtname == .toml || resourceExtname == .py || resourceFilename == Pipfile || resourceFilename == package.json)",
+          "group": "navigation@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/glob": "^8.0.0",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@types/vscode": "^1.74.0",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "@vscode/test-electron": "^2.2.0",
+    "@vscode/vsce": "^2.32.0",
+    "eslint": "^8.28.0",
+    "glob": "^8.0.3",
+    "mocha": "^10.1.0",
+    "typescript": "^4.9.4"
+  },
+  "dependencies": {
+    "@iarna/toml": "^2.2.5",
+    "axios": "^1.6.0"
+  }
+}

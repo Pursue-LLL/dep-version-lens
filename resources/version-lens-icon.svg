@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16" height="16" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg">
+  <g fill="currentColor">
+    <!-- 版本号图标 -->
+    <path d="M2 3h12v2H2V3zm0 4h8v2H2V7zm0 4h10v2H2v-2z"/>
+    <!-- 眼睛图标 -->
+    <circle cx="13" cy="8" r="2" fill="none" stroke="currentColor" stroke-width="1"/>
+    <circle cx="13" cy="8" r="1"/>
+  </g>
+</svg>
