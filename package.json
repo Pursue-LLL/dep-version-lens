@@ -1,5 +1,5 @@
 {
-  "name": "version-lens",
+  "name": "dep-version-lens",
   "displayName": "Dep Version Lens",
   "description": "Display latest versions for Python and npm dependencies with one-click updates",
   "version": "0.9.0",
@@ -32,7 +32,7 @@
     "node"
   ],
   "activationEvents": [
-    "onLanguage:pip-requirements",
+    "onLanguage:plaintext",
     "onLanguage:toml",
     "onLanguage:python",
     "onLanguage:json"
@@ -129,12 +129,12 @@
       "editor/title": [
         {
           "command": "version-lens.toggleVersionLenses",
-          "when": "version-lens.lensesEnabled && ((resourceExtname == .txt && resourceFilename =~ /requirements/) || resourceExtname == .toml || resourceExtname == .py || resourceFilename == Pipfile || resourceFilename == package.json)",
+          "when": "version-lens.lensesEnabled && ((resourceExtname == .txt && resourceFilename =~ /requirements/) || resourceFilename =~ /pyproject\\.toml$/ || resourceFilename =~ /setup\\.py$/ || resourceFilename == Pipfile || resourceFilename == package.json)",
           "group": "navigation@1"
         },
         {
           "command": "version-lens.toggleVersionLensesOff",
-          "when": "!version-lens.lensesEnabled && ((resourceExtname == .txt && resourceFilename =~ /requirements/) || resourceExtname == .toml || resourceExtname == .py || resourceFilename == Pipfile || resourceFilename == package.json)",
+          "when": "!version-lens.lensesEnabled && ((resourceExtname == .txt && resourceFilename =~ /requirements/) || resourceFilename =~ /pyproject\\.toml$/ || resourceFilename =~ /setup\\.py$/ || resourceFilename == Pipfile || resourceFilename == package.json)",
           "group": "navigation@1"
         }
       ]

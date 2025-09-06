@@ -50,7 +50,15 @@ export function activate(context: vscode.ExtensionContext) {
 
   // 初始化状态
   decorationManager.setEnabled(isVersionLensesEnabled);
+
+  // 立即设置上下文变量，确保菜单条件正确工作
   updateToggleCommandState();
+
+  // 监听活动编辑器变化，确保上下文与当前文件状态同步
+  const activeEditorListener = vscode.window.onDidChangeActiveTextEditor(editor => {
+    updateToggleCommandState();
+  });
+  context.subscriptions.push(activeEditorListener);
 
   // 初始化文件监控
   fileWatcher = new FileWatcher();
